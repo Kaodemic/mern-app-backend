@@ -14,6 +14,14 @@ app.use(bodyParser.json({ limit: '30mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '30mb' }));
 app.use(cors());
 
+
+// middleware check logged in
+function authToken(req, res, next) {
+  const token = req.headers['authorization'].split(' ')[1];
+  console.log('token', token);
+
+}
+
 Object.keys(routers).map(key => app.use([key], routers[key]))
 
 mongoose

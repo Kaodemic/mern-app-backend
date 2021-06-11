@@ -1,9 +1,10 @@
 import express from "express";
-import { getUser, createUser, deleteUser, userLogin } from '../controllers/usersControllers.js';
+import { authToken } from '../services/TokenAuth.js';
+import { getCurrentUser, createUser, deleteUser, userLogin } from '../controllers/usersControllers.js';
 
 const router = express.Router();
 
-router.get('/user/currentUser', getUser);
+router.get('/user/currentUser', authToken, getCurrentUser);
 
 router.post('/user/login', userLogin);
 
